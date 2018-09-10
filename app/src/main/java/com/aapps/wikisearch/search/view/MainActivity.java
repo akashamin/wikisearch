@@ -35,6 +35,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnFocusChange;
 import butterknife.OnTextChanged;
 import io.realm.RealmResults;
 
@@ -162,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements ISearchView, Sear
             mSearchPresenter.stop();
     }
 
+    @OnFocusChange(R.id.edt_search)
     @OnClick(R.id.edt_search)
     public void onSearchClicked() {
         mAppBar.setExpanded(false);
@@ -224,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements ISearchView, Sear
     private void initWebView(String pageTitle, int pageId) {
         Intent webviewIntent = new Intent(this, WebviewActivity.class);
         webviewIntent.putExtra(WebviewActivity.WEB_TITLE, pageTitle);
-        webviewIntent.putExtra(WebviewActivity.WEB_URL, "https://en.wikipedia.org/?curid=" + pageId);
+        webviewIntent.putExtra(WebviewActivity.WEB_URL, "https://en.m.wikipedia.org/?curid=" + pageId);
         if (checkNetworkStatus())
             startActivity(webviewIntent);
         else
